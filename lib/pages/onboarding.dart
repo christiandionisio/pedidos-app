@@ -16,7 +16,7 @@ class OnboardingPage extends StatelessWidget {
         ],
       ),
       decoration: const PageDecoration(
-        titleTextStyle: TextStyle(fontSize: 26, fontWeight: FontWeight.w700),
+        titleTextStyle: PropertiesUtil.titleStyle,
         bodyTextStyle: TextStyle(
             fontSize: 12.0, color: PropertiesUtil.onboardingTextBodyColor),
       ),
