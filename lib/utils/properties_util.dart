@@ -7,6 +7,7 @@ class PropertiesUtil {
   // Colores para contenido de sección onboarding y registration
   static const Color dotsColor = Color(0xFFE6E6E6);
   static const Color onboardingTextBodyColor = Color(0xFF4B5563);
+  static const Color unselectedTabText = Color(0xFF89909E);
 
   static const TextStyle titleStyle =
       TextStyle(fontSize: 26, fontWeight: FontWeight.w700);

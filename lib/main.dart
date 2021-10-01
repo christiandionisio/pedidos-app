@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pedidos_app/pages/home_page.dart';
+import 'package:pedidos_app/pages/registration_page.dart';
 import 'package:pedidos_app/pages/onboarding.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
 
@@ -18,8 +18,10 @@ class MyApp extends StatelessWidget {
       initialRoute: 'onboarding_screen',
       routes: {
         'onboarding_screen': (_) => OnboardingPage(),
-        'home_screen': (_) => HomePage(),
+        'registration_screen': (_) => RegistrationPage(),
       },
+
+      // Colores y propiedades generales
       theme: ThemeData(
           primaryColor: PropertiesUtil.primaryColor,
           primaryColorLight: PropertiesUtil.primaryColor,

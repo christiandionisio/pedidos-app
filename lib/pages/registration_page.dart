@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
+import 'package:pedidos_app/widgets/modal_registration.dart';
 
-class HomePage extends StatelessWidget {
+class RegistrationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +50,15 @@ class HomePage extends StatelessWidget {
                 width: double.infinity,
                 height: 49,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (_) {
+                        return CustomModalRegistration();
+                      },
+                    );
+                  },
                   style: PropertiesUtil.stylePrimaryButton,
                   child: const Text("Create Account"),
                 ),

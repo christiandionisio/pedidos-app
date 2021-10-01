@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:pedidos_app/pages/home_page.dart';
+import 'package:pedidos_app/pages/registration_page.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
 
 class OnboardingPage extends StatelessWidget {
@@ -46,7 +46,7 @@ class OnboardingPage extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => HomePage(),
+              builder: (context) => RegistrationPage(),
             ));
       },
       showSkipButton: true,
