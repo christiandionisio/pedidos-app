@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class PropertiesUtil {
   static const Color primaryColor = Color(0xFF32B768);
   static const Color primaryColorOutlined = Color(0xFFD1FAE5);
+  static const Color colorGoogleButtonStyle = Color(0xFFF4F4F4);
 
   // Colores para contenido de sección onboarding y registration
   static const Color dotsColor = Color(0xFFE6E6E6);

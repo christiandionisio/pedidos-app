@@ -52,10 +52,11 @@ class RegistrationPage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     showModalBottomSheet(
+                      isScrollControlled: true,
                       backgroundColor: Colors.transparent,
                       context: context,
                       builder: (_) {
-                        return CustomModalRegistration();
+                        return CustomModalRegistration(initialIndex: 0);
                       },
                     );
                   },
@@ -73,7 +74,16 @@ class RegistrationPage extends StatelessWidget {
                 width: double.infinity,
                 height: 49,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      context: context,
+                      builder: (_) {
+                        return CustomModalRegistration(initialIndex: 1);
+                      },
+                    );
+                  },
                   style: PropertiesUtil.stylePrimaryButton,
                   child: const Text("Login"),
                 ),

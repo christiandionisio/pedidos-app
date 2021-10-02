@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:pedidos_app/providers/login_form_provider.dart';
+import 'package:pedidos_app/providers/registration_form_provider.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
+import 'package:pedidos_app/widgets/login_form.dart';
+import 'package:pedidos_app/widgets/registration_form.dart';
+import 'package:provider/provider.dart';
 
 class RegistrationTabController extends StatelessWidget {
-  const RegistrationTabController({
-    Key? key,
-  }) : super(key: key);
+  final int initialIndex;
+
+  const RegistrationTabController({Key? key, required this.initialIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
+      initialIndex: this.initialIndex,
       child: Column(
         children: [
           const Divider(
@@ -40,11 +47,21 @@ class RegistrationTabController extends StatelessWidget {
             child: TabBarView(children: [
               Column(
                 children: [
-                  Text("Home Body"),
+                  SizedBox(height: 30),
+                  ChangeNotifierProvider(
+                    create: (_) => RegistrationFormProvider(),
+                    child: RegistrationForm(),
+                  ),
                 ],
               ),
-              Container(
-                child: Text("Login Body"),
+              Column(
+                children: [
+                  SizedBox(height: 30),
+                  ChangeNotifierProvider(
+                    create: (_) => LoginFormProvider(),
+                    child: LoginForm(),
+                  ),
+                ],
               ),
             ]),
           ),
