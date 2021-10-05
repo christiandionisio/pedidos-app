@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Pedidos App',
-      initialRoute: 'onboarding_screen',
+      initialRoute: 'home_screen',
       routes: {
         'onboarding_screen': (_) => OnboardingPage(),
         'registration_screen': (_) => RegistrationPage(),
@@ -25,21 +25,26 @@ class MyApp extends StatelessWidget {
 
       // Colores y propiedades generales
       theme: ThemeData(
-          primaryColor: PropertiesUtil.primaryColor,
-          primaryColorLight: PropertiesUtil.primaryColor,
-          appBarTheme: AppBarTheme(
-            color: PropertiesUtil.primaryColor,
+        primaryColor: PropertiesUtil.primaryColor,
+        primaryColorLight: PropertiesUtil.primaryColor,
+        appBarTheme: AppBarTheme(
+          color: PropertiesUtil.primaryColor,
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            primary: PropertiesUtil.primaryColor,
           ),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
               primary: PropertiesUtil.primaryColor,
-            ),
-          ),
-          outlinedButtonTheme: OutlinedButtonThemeData(
-            style: OutlinedButton.styleFrom(
-                primary: PropertiesUtil.primaryColor,
-                backgroundColor: PropertiesUtil.primaryColorOutlined),
-          )),
+              backgroundColor: PropertiesUtil.primaryColorOutlined),
+        ),
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          selectedItemColor: PropertiesUtil.primaryColor,
+          backgroundColor: Colors.white,
+        ),
+      ),
     );
   }
 }
