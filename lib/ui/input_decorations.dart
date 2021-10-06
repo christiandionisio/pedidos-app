@@ -43,4 +43,36 @@ class InputDecorations {
           : null,
     );
   }
+
+  static InputDecoration searchHomeInputDecoration({
+    required String hintText,
+    required String labelText,
+    IconData? prefixIcon,
+  }) {
+    return InputDecoration(
+      filled: true,
+      fillColor: Color(0xFFE6E7E9),
+      isDense: true,
+      contentPadding: EdgeInsets.symmetric(vertical: 0),
+      enabledBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          color: Colors.transparent,
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          color: Colors.transparent,
+        ),
+        borderRadius: BorderRadius.circular(12),
+      ),
+      hintText: hintText,
+      hintStyle: const TextStyle(
+        color: Color(0xFF9CA3AF),
+      ),
+      prefixIcon: prefixIcon != null
+          ? Icon(prefixIcon, color: Color(0xFF9CA3AF))
+          : null,
+    );
+  }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pedidos_app/ui/input_decorations.dart';
+import 'package:pedidos_app/widgets/bottom_menu.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -7,44 +9,46 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
-      body: Center(
-        child: Text('Home Page'),
+      appBar: _getCustomAppBar(),
+      body: Column(
+        children: [
+          _SearchCustomWidget(),
+        ],
       ),
-      bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
-          boxShadow: <BoxShadow>[
-            BoxShadow(
-              color: Colors.black12,
-              blurRadius: 14,
-            ),
-          ],
+      bottomNavigationBar: BottomPrincipalMenu(),
+    );
+  }
+
+  AppBar _getCustomAppBar() {
+    return AppBar(
+      title: Text('App Pedidos'),
+      leading: IconButton(
+        // TODO: desplegar menú lateral
+        onPressed: () {},
+        icon: Icon(Icons.menu),
+      ),
+      actions: [
+        IconButton(
+          // TODO: actualizar perfil de acuerdo a servicio
+          icon: Image.asset('assets/home/perfil.png'),
+          onPressed: () {},
         ),
-        child: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-          child: BottomNavigationBar(
-            currentIndex: 0,
-            iconSize: 35,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            items: [
-              BottomNavigationBarItem(
-                icon: new Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: new Icon(Icons.list_alt_outlined),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: new Icon(Icons.person_outline),
-                label: 'Home',
-              ),
-            ],
-          ),
-        ),
+      ],
+    );
+  }
+}
+
+class _SearchCustomWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
+      child: TextField(
+        decoration: InputDecorations.searchHomeInputDecoration(
+            hintText: 'Search', labelText: '', prefixIcon: Icons.search),
+        onTap: () {
+          print('Go to Search Page!');
+        },
       ),
     );
   }
