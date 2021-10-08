@@ -10,6 +10,9 @@ class PropertiesUtil {
   static const Color onboardingTextBodyColor = Color(0xFF4B5563);
   static const Color unselectedTabText = Color(0xFF89909E);
 
+  // Colores para contenido HomeScreen
+  static const Color listTileTrailing = Color(0xFF6B7280);
+
   static const TextStyle titleStyle =
       TextStyle(fontSize: 26, fontWeight: FontWeight.w700);
 

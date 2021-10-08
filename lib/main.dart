@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: PropertiesUtil.primaryColor,
         primaryColorLight: PropertiesUtil.primaryColor,
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: PropertiesUtil.primaryColor,
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               primary: PropertiesUtil.primaryColor,
               backgroundColor: PropertiesUtil.primaryColorOutlined),
         ),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: PropertiesUtil.primaryColor,
           backgroundColor: Colors.white,
         ),
