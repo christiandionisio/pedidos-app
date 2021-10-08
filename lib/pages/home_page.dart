@@ -3,6 +3,8 @@ import 'package:pedidos_app/ui/input_decorations.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
 import 'package:pedidos_app/widgets/bottom_menu.dart';
 import 'package:pedidos_app/widgets/home_page/custom_dish_card.dart';
+import 'package:pedidos_app/widgets/home_page/custom_listtile_restaurant.dart';
+import 'package:pedidos_app/widgets/home_page/section_title_lable.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -12,18 +14,28 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFFF6F6F6),
       appBar: _getCustomAppBar(),
-      body: Column(
-        children: [
-          _SearchCustomWidget(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            _SearchCustomWidget(),
 
-          // Section title lable
-          _SectionTitleLabel(
-            title: 'Today New Arivable',
-            subtitle: 'Best of the today  food list update',
-          ),
-          // Lista de platos
-          _CustomListDishes(),
-        ],
+            // Section title lable
+            SectionTitleLabel(
+              title: 'Today New Arivable',
+              subtitle: 'Best of the today  food list update',
+            ),
+            // Lista de platos
+            _CustomListDishes(),
+            SizedBox(height: 20),
+
+            // Section title lable
+            SectionTitleLabel(
+              title: 'Explore Restaurant',
+              subtitle: 'Check your city Near by Restaurant',
+            ),
+            _CustomListRestaurants(),
+          ],
+        ),
       ),
       bottomNavigationBar: BottomPrincipalMenu(),
     );
@@ -48,6 +60,23 @@ class HomePage extends StatelessWidget {
   }
 }
 
+class _CustomListRestaurants extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        children: [
+          CustomListTileRestaurants(),
+          CustomListTileRestaurants(),
+          CustomListTileRestaurants(),
+          SizedBox(height: 30),
+        ],
+      ),
+    );
+  }
+}
+
 class _CustomListDishes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,43 +89,6 @@ class _CustomListDishes extends StatelessWidget {
         itemBuilder: (context, index) {
           return CustomDishCard();
         },
-      ),
-    );
-  }
-}
-
-class _SectionTitleLabel extends StatelessWidget {
-  final String title;
-  final String subtitle;
-
-  const _SectionTitleLabel(
-      {Key? key, required this.title, required this.subtitle})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: ListTile(
-        title: Text(
-          this.title,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-        ),
-        subtitle: Text(this.subtitle, style: TextStyle(fontSize: 13)),
-        trailing: GestureDetector(
-          onTap: () {
-            //TODO: redireccionar a página de sección
-            print('TAPPPP!!!');
-            print('hola');
-          },
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('See All',
-                  style: TextStyle(color: PropertiesUtil.listTileTrailing)),
-              Icon(Icons.chevron_right, color: PropertiesUtil.listTileTrailing),
-            ],
-          ),
-        ),
       ),
     );
   }
