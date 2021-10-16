@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pedidos_app/pages/home_page.dart';
+import 'package:pedidos_app/pages/dish_page.dart';
+import 'package:pedidos_app/pages/principal_page.dart';
 import 'package:pedidos_app/pages/registration_page.dart';
 import 'package:pedidos_app/pages/onboarding_page.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       routes: {
         'onboarding_screen': (_) => OnboardingPage(),
         'registration_screen': (_) => RegistrationPage(),
-        'home_screen': (_) => HomePage(),
+        'home_screen': (_) => PrincipalPage(),
+        'dish_screen': (_) => DishPage(),
       },
 
       // Colores y propiedades generales

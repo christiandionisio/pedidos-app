@@ -11,25 +11,34 @@ class CustomDishCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         elevation: 2,
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(8.0),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Card Image
-                  _getCardImage(),
-                  const SizedBox(height: 10),
+        child: InkWell(
+          customBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          onTap: () {
+            //TODO: enviar parámetros de platos
+            Navigator.pushNamed(context, 'dish_screen');
+          },
+          child: Container(
+            padding: const EdgeInsets.all(10),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Card Image
+                    _getCardImage(),
+                    const SizedBox(height: 10),
 
-                  // Card Title
-                  _getCardTitle(),
-                  const SizedBox(height: 4),
+                    // Card Title
+                    _getCardTitle(),
+                    const SizedBox(height: 4),
 
-                  // Card Subtitle
-                  _getCardSubtitle(),
-                ],
+                    // Card Subtitle
+                    _getCardSubtitle(),
+                  ],
+                ),
               ),
             ),
           ),

@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class BottomPrincipalMenu extends StatelessWidget {
+class BottomPrincipalMenu extends StatefulWidget {
   const BottomPrincipalMenu({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<BottomPrincipalMenu> createState() => _BottomPrincipalMenuState();
+}
+
+class _BottomPrincipalMenuState extends State<BottomPrincipalMenu> {
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +29,15 @@ class BottomPrincipalMenu extends StatelessWidget {
           topRight: Radius.circular(20),
         ),
         child: BottomNavigationBar(
-          currentIndex: 0,
+          currentIndex: selectedIndex,
           iconSize: 35,
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          onTap: (int index) {
+            setState(() {
+              this.selectedIndex = index;
+            });
+          },
           items: [
             BottomNavigationBarItem(
               icon: new Icon(Icons.home),
