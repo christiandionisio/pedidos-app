@@ -20,4 +20,11 @@ class PropertiesUtil {
     shape: MaterialStateProperty.all(
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0))),
   );
+
+  static final ButtonStyle styleDangerButton = ButtonStyle(
+    backgroundColor:
+        MaterialStateColor.resolveWith((states) => Color(0xFFEB4646)),
+    shape: MaterialStateProperty.all(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0))),
+  );
 }
