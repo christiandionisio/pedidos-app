@@ -188,6 +188,7 @@ class ProfilePage extends StatelessWidget {
 
                       // Eliminar tarjeta
                       Material(
+                        color: Colors.white,
                         child: InkWell(
                           customBorder: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20),
