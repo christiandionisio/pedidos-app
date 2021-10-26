@@ -17,7 +17,7 @@ class ProfilePage extends StatelessWidget {
           SizedBox(height: 30),
 
           // Accoun Settings Card
-          AccountSettingsCard(),
+          // AccountSettingsCard(),
 
           // Direccion Card
           DirectionCard(),
@@ -47,6 +47,7 @@ class _ListViewPaymentCard extends StatelessWidget {
       width: double.infinity,
       height: 140,
       child: ListView.builder(
+          physics: BouncingScrollPhysics(),
           itemCount: 3,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

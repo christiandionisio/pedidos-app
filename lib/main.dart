@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:pedidos_app/pages/account_settings_page.dart';
+import 'package:pedidos_app/pages/direccion_settings_page.dart';
 import 'package:pedidos_app/pages/dish_page.dart';
 import 'package:pedidos_app/pages/principal_page.dart';
 import 'package:pedidos_app/pages/registration_page.dart';
 import 'package:pedidos_app/pages/onboarding_page.dart';
+import 'package:pedidos_app/providers/direccion_form_provider.dart';
+import 'package:pedidos_app/providers/perfil_form_provider.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -14,37 +19,45 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light
         .copyWith(statusBarColor: Colors.transparent));
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Pedidos App',
-      initialRoute: 'home_screen',
-      routes: {
-        'onboarding_screen': (_) => OnboardingPage(),
-        'registration_screen': (_) => RegistrationPage(),
-        'home_screen': (_) => PrincipalPage(),
-        'dish_screen': (_) => DishPage(),
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => new PerfilFormProvider()),
+        ChangeNotifierProvider(create: (_) => new DireccionFormProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Pedidos App',
+        initialRoute: 'home_screen',
+        routes: {
+          'onboarding_screen': (_) => OnboardingPage(),
+          'registration_screen': (_) => RegistrationPage(),
+          'home_screen': (_) => PrincipalPage(),
+          'dish_screen': (_) => DishPage(),
+          'account_settings_screen': (_) => AccountSettingsPage(),
+          'direccion_settings_screen': (_) => DireccionSettingsPage(),
+        },
 
-      // Colores y propiedades generales
-      theme: ThemeData(
-        primaryColor: PropertiesUtil.primaryColor,
-        primaryColorLight: PropertiesUtil.primaryColor,
-        appBarTheme: const AppBarTheme(
-          color: PropertiesUtil.primaryColor,
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            primary: PropertiesUtil.primaryColor,
+        // Colores y propiedades generales
+        theme: ThemeData(
+          primaryColor: PropertiesUtil.primaryColor,
+          primaryColorLight: PropertiesUtil.primaryColor,
+          appBarTheme: const AppBarTheme(
+            color: PropertiesUtil.primaryColor,
           ),
-        ),
-        outlinedButtonTheme: OutlinedButtonThemeData(
-          style: OutlinedButton.styleFrom(
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
               primary: PropertiesUtil.primaryColor,
-              backgroundColor: PropertiesUtil.primaryColorOutlined),
-        ),
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          selectedItemColor: PropertiesUtil.primaryColor,
-          backgroundColor: Colors.white,
+            ),
+          ),
+          outlinedButtonTheme: OutlinedButtonThemeData(
+            style: OutlinedButton.styleFrom(
+                primary: PropertiesUtil.primaryColor,
+                backgroundColor: PropertiesUtil.primaryColorOutlined),
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: PropertiesUtil.primaryColor,
+            backgroundColor: Colors.white,
+          ),
         ),
       ),
     );
