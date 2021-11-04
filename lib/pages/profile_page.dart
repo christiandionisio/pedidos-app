@@ -76,7 +76,9 @@ class _LabelListCustomCard extends StatelessWidget {
               height: 30,
               child: Icon(Icons.add),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, 'add_credit_card_screen');
+            },
             customBorder: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20),
             ),

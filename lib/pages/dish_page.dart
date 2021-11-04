@@ -189,7 +189,7 @@ class _AditionalDescriptionContainer extends StatelessWidget {
 
   Container _getTimeBox() {
     return Container(
-      width: 70,
+      width: 80,
       padding: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),

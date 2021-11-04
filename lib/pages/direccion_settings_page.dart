@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
 import 'package:pedidos_app/providers/direccion_form_provider.dart';
 import 'package:pedidos_app/ui/input_decorations.dart';
 import 'package:pedidos_app/utils/properties_util.dart';

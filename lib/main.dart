@@ -6,9 +6,11 @@ import 'package:pedidos_app/pages/dish_page.dart';
 import 'package:pedidos_app/pages/principal_page.dart';
 import 'package:pedidos_app/pages/registration_page.dart';
 import 'package:pedidos_app/pages/onboarding_page.dart';
+import 'package:pedidos_app/providers/creditcard_form.dart';
 import 'package:pedidos_app/providers/direccion_form_provider.dart';
 import 'package:pedidos_app/providers/perfil_form_provider.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
+import 'package:pedidos_app/widgets/profile_page/add_credit_card_screen.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => new PerfilFormProvider()),
         ChangeNotifierProvider(create: (_) => new DireccionFormProvider()),
+        ChangeNotifierProvider(create: (_) => new CreditCardFormProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -35,6 +38,7 @@ class MyApp extends StatelessWidget {
           'dish_screen': (_) => DishPage(),
           'account_settings_screen': (_) => AccountSettingsPage(),
           'direccion_settings_screen': (_) => DireccionSettingsPage(),
+          'add_credit_card_screen': (_) => CreditCardScreen(),
         },
 
         // Colores y propiedades generales

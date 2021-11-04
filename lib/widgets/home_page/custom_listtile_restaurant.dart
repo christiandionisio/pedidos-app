@@ -39,7 +39,7 @@ class CustomListTileRestaurants extends StatelessWidget {
                 size: 19,
               ),
               SizedBox(
-                width: 150,
+                width: 130,
                 child: const Text(
                   'kazi Deiry, Taiger Pass Chittagong',
                   overflow: TextOverflow.ellipsis,
