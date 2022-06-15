@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Pedidos App',
-        initialRoute: 'home_screen',
+        initialRoute: 'onboarding_screen',
         routes: {
           'onboarding_screen': (_) => OnboardingPage(),
           'registration_screen': (_) => RegistrationPage(),

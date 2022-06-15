@@ -213,7 +213,7 @@ class _AditionalDescriptionContainer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 4),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        color: Colors.yellow,
+        color: Colors.yellow[700],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
