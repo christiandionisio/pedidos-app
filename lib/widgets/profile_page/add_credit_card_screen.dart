@@ -52,7 +52,7 @@ class _CreditCardPreview extends StatelessWidget {
           Icon(Icons.credit_card, size: 35, color: PropertiesUtil.primaryColor),
           SizedBox(height: 20),
           Text( (creditCardForm.numeroTarjeta != '')
-            ? creditCardForm.numeroTarjeta
+            ? _formatCreditCardNumber(creditCardForm.numeroTarjeta)
             : '**** **** **** ****', 
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
@@ -72,9 +72,38 @@ class _CreditCardPreview extends StatelessWidget {
       ),
     );
   }
+
+  String _formatCreditCardNumber(String numeroTarjeta) {
+    // TODO: formatos de tarjetas xxxx xxxxx xxxx xxxx 
+    return numeroTarjeta;
+  }
+
+  
 }
 
-class _AgregarCreditCardForm extends StatelessWidget {
+class _AgregarCreditCardForm extends StatefulWidget {
+  @override
+  State<_AgregarCreditCardForm> createState() => _AgregarCreditCardFormState();
+}
+
+class _AgregarCreditCardFormState extends State<_AgregarCreditCardForm> {
+
+  late TextEditingController _vigenciaController;
+
+  @override
+  void initState() {
+    final creditCardForm = Provider.of<CreditCardFormProvider>(context, listen: false);
+
+    _vigenciaController = TextEditingController(text: creditCardForm.vigencia);
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _vigenciaController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final creditCardForm = Provider.of<CreditCardFormProvider>(context);
@@ -89,13 +118,17 @@ class _AgregarCreditCardForm extends StatelessWidget {
 
             TextFormField(
               autocorrect: false,
-              keyboardType: TextInputType.text,
+              keyboardType: TextInputType.number,
               decoration: InputDecorations.authInputDecoration(
                 hintText: 'Numero de tarjeta',
                 labelText: 'Numero de tarjeta',
                 prefixIcon: Icons.credit_card,
               ),
-              onChanged: (value) => creditCardForm.numeroTarjeta = value,
+              onChanged: (value) {
+                if (value.length == 2) {
+                  creditCardForm.vigencia += '/';
+                }
+              },
               validator: (value) {
                 return (value != null && value.length >= 1) 
                   ? null 
@@ -105,6 +138,7 @@ class _AgregarCreditCardForm extends StatelessWidget {
             SizedBox(height: 20),
 
             TextFormField(
+              controller: _vigenciaController,
               autocorrect: false,
               keyboardType: TextInputType.text,
               decoration: InputDecorations.authInputDecoration(
@@ -112,7 +146,14 @@ class _AgregarCreditCardForm extends StatelessWidget {
                 labelText: 'Vigencia',
                 prefixIcon: Icons.date_range_outlined,
               ),
-              onChanged: (value) => creditCardForm.vigencia = value,
+              onChanged: (value){
+                if (value.length == 2 && !creditCardForm.vigencia.contains('/')) {
+                  value += '/';
+                  print('holaa');
+                  _vigenciaController.text = value;
+                }
+                creditCardForm.vigencia = value;
+              },
               validator: (value) {
                 return (value != null && value.length >= 1) 
                   ? null 
@@ -124,6 +165,7 @@ class _AgregarCreditCardForm extends StatelessWidget {
             TextFormField(
               autocorrect: false,
               keyboardType: TextInputType.text,
+              textCapitalization: TextCapitalization.characters,
               decoration: InputDecorations.authInputDecoration(
                 hintText: 'Nombre del titular',
                 labelText: 'Nombre del titular',
@@ -180,5 +222,13 @@ class _AgregarCreditCardForm extends StatelessWidget {
         return (value != null && value.length >= 1) ? null : errorMesssage;
       },
     );
+  }
+
+  String _formatCreditCardDate(String date) {
+    if (date.length == 2) {
+      date += '/';
+    }
+
+    return date;
   }
 }
