@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:pedidos_app/providers/registration_form_provider.dart';
 import 'package:pedidos_app/ui/input_decorations.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
@@ -91,20 +92,24 @@ class RegistrationForm extends StatelessWidget {
               onPressed: registrationForm.isLoading
                   ? null
                   : () async {
-                      // FocusScope.of(context).unfocus();
+                      FocusScope.of(context).unfocus();
 
-                      // if (!registrationForm.isValidForm()) {
-                      //   return;
-                      // }
+                      if (!registrationForm.isValidForm()) {
+                        return;
+                      }
 
-                      // registrationForm.isLoading = true;
+                      registrationForm.isLoading = true;
 
-                      // await Future.delayed(Duration(seconds: 2));
+                      Response response = await registrationForm.registerNewUser('auth/register');
 
-                      // // TODO: validar si el login es correcto
-                      // registrationForm.isLoading = false;
+                      if (response.statusCode == 200) {
+                        // TODO: guardar token
+                        Navigator.pushReplacementNamed(context, 'home_screen');
+                      } else {
+                        // TODO: mostrar popup de error
+                      }
 
-                      Navigator.pushReplacementNamed(context, 'home_screen');
+                      registrationForm.isLoading = false;
                     },
             ),
             SizedBox(height: 15),
