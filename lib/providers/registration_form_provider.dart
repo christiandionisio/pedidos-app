@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+
 
 class RegistrationFormProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = new GlobalKey<FormState>();
@@ -43,6 +45,11 @@ class RegistrationFormProvider extends ChangeNotifier {
     };
 
     return await http.post(url, headers: headers, body: jsonEncode(newUser));
+  }
+
+  void guardarToken(String token) async {
+    final storage = new FlutterSecureStorage();
+    await storage.write(key: 'token', value: token);
   }
 
 }

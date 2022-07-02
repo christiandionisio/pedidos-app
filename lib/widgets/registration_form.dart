@@ -4,6 +4,7 @@ import 'package:pedidos_app/providers/registration_form_provider.dart';
 import 'package:pedidos_app/ui/input_decorations.dart';
 import 'package:pedidos_app/utils/properties_util.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 
 class RegistrationForm extends StatelessWidget {
   @override
@@ -103,7 +104,9 @@ class RegistrationForm extends StatelessWidget {
                       Response response = await registrationForm.registerNewUser('auth/register');
 
                       if (response.statusCode == 200) {
-                        // TODO: guardar token
+                        final body = json.decode(response.body);
+                        registrationForm.guardarToken(body['token']);
+                        
                         Navigator.pushReplacementNamed(context, 'home_screen');
                       } else {
                         // TODO: mostrar popup de error
