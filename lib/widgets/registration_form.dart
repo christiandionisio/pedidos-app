@@ -6,6 +6,8 @@ import 'package:pedidos_app/utils/properties_util.dart';
 import 'package:provider/provider.dart';
 import 'dart:convert';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class RegistrationForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -106,10 +108,12 @@ class RegistrationForm extends StatelessWidget {
                       if (response.statusCode == 200) {
                         final body = json.decode(response.body);
                         registrationForm.guardarToken(body['token']);
-                        
+                        registrationForm.isLoading = false;
+
                         Navigator.pushReplacementNamed(context, 'home_screen');
                       } else {
                         // TODO: mostrar popup de error
+                        print('error');
                       }
 
                       registrationForm.isLoading = false;

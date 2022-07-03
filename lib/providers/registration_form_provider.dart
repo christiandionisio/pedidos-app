@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class RegistrationFormProvider extends ChangeNotifier {
@@ -23,8 +23,6 @@ class RegistrationFormProvider extends ChangeNotifier {
   }
 
   bool isValidForm() {
-    print(formKey.currentState?.validate());
-
     return formKey.currentState?.validate() ?? false;
   }
 
@@ -48,8 +46,8 @@ class RegistrationFormProvider extends ChangeNotifier {
   }
 
   void guardarToken(String token) async {
-    final storage = new FlutterSecureStorage();
-    await storage.write(key: 'token', value: token);
+    final storage = await SharedPreferences.getInstance();
+    await storage.setString('token', token);
   }
 
 }
