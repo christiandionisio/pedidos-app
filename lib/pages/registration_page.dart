@@ -80,7 +80,7 @@ class RegistrationPage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       context: context,
                       builder: (_) {
-                        return CustomModalRegistration(initialIndex: 1);
+                        return Container(child: CustomModalRegistration(initialIndex: 1));
                       },
                     );
                   },

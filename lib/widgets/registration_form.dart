@@ -78,47 +78,7 @@ class RegistrationForm extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              disabledColor: Colors.grey,
-              elevation: 0,
-              color: PropertiesUtil.primaryColor,
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: Text(
-                  registrationForm.isLoading ? 'Espere' : 'Registration',
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-              onPressed: registrationForm.isLoading
-                  ? null
-                  : () async {
-                      FocusScope.of(context).unfocus();
-
-                      if (!registrationForm.isValidForm()) {
-                        return;
-                      }
-
-                      registrationForm.isLoading = true;
-
-                      Response response = await registrationForm.registerNewUser('auth/register');
-
-                      if (response.statusCode == 200) {
-                        final body = json.decode(response.body);
-                        registrationForm.guardarToken(body['token']);
-                        registrationForm.isLoading = false;
-
-                        Navigator.pushReplacementNamed(context, 'home_screen');
-                      } else {
-                        // TODO: mostrar popup de error
-                        print('error');
-                      }
-
-                      registrationForm.isLoading = false;
-                    },
-            ),
+            RegistrationButton(registrationForm: registrationForm),
             SizedBox(height: 15),
             MaterialButton(
               shape: RoundedRectangleBorder(
@@ -136,6 +96,76 @@ class RegistrationForm extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class RegistrationButton extends StatelessWidget {
+  const RegistrationButton({
+    required this.registrationForm,
+  });
+
+  final RegistrationFormProvider registrationForm;
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialButton(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
+      ),
+      disabledColor: Colors.grey,
+      elevation: 0,
+      color: PropertiesUtil.primaryColor,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+        child: Text(
+          registrationForm.isLoading ? 'Espere' : 'Registration',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      onPressed: registrationForm.isLoading
+          ? null
+          : () async {
+              FocusScope.of(context).unfocus();
+
+              if (!registrationForm.isValidForm()) {
+                return;
+              }
+
+              registrationForm.isLoading = true;
+
+              Response response = await registrationForm.registerNewUser('auth/register');
+
+              if (response.statusCode == 200) {
+                final body = json.decode(response.body);
+                registrationForm.guardarToken(body['token']);
+                registrationForm.isLoading = false;
+
+                Navigator.pushReplacementNamed(context, 'home_screen');
+              } else {
+                // TODO: mostrar popup de error
+                Navigator.pop(context);
+                final snackBar = SnackBar(
+                  backgroundColor: Colors.red[400],
+                  content: const Text('Error al registrarse!'),
+                  behavior: SnackBarBehavior.floating,
+                  action: SnackBarAction(
+                    label: 'OK',
+                    textColor: Colors.white,
+                    onPressed: () {
+                      // Some code to undo the change.
+                    },
+                  ),
+                );
+
+                // Find the ScaffoldMessenger in the widget tree
+                // and use it to show a SnackBar.
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                print('error');
+              }
+
+              registrationForm.isLoading = false;
+            },
     );
   }
 }
